@@ -7,15 +7,28 @@ import cup4 from './cup4.jpg';
 import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
 import '../App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import api from '../communication/api';
+import { useState } from 'react';
 
 function Home() {
     const history = useHistory();
+    const [items, setItems] = useState([]);
     
     let updateCart = () => {
         history.push('/cart');
     }
+
+    useEffect (() => {
+        // need the if statement or line will infinite b/c useEffect is running after each return.
+        if(items.length === 0){
+            let c = [];
+            api.getItems()
+            .then(x => setItems(x))
+            .catch(e => console.log(e));
+        }
+    });
 
     return (
         /* Once database is set up use a useEffect to get items in there
