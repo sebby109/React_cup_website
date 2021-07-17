@@ -6,7 +6,6 @@
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
   margin: 20px;
   font-size: 30px;
   text-align: center;
@@ -15,4 +14,15 @@
 .img-s {
   border-radius: 20%;
   height: 300px;
+}
+
+.text-adj {
+  vertical-align: 'top';
+  display: 'inline-block'; 
+  text-align: 'center';
+}
+
+button {
+  font-size: 18px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }

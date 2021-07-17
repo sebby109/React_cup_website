@@ -7,50 +7,73 @@ import cup4 from './cup4.jpg';
 import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
 import '../App.css';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Home() {
+    const history = useHistory();
+    
+    let updateCart = () => {
+        history.push('/cart');
+    }
+
     return (
         /* Once database is set up use a useEffect to get items in there
             and then use map so you can generate all the items in the database
             so if an item is added it will automatically be put on the website.
+
+            7/15: added cart. Now to create server side so I can transfer the cup images over there
+            and get it through the api maybe? and also the names of the cups? use map to create them.
         */
+
         <Container>
             <div class="grid-container">
                 <div class="grid-item">
                     <img class="img-s" src={cup1} alt="cup1" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center'}}>Graphics cup</b>
+                        <b class="text-adj"> Movie cup </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
+
                 <div class="grid-item">
                     <img class="img-s" src={cup2} alt="cup2" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center' }}>Graphics cup</b>
+                        <b class="text-adj"> Large cup </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
+
                 <div class="grid-item">
                     <img class="img-s" src={cup3}  alt="cup3" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center' }}>Graphics cup</b>
+                        <b class="text-adj"> coffee mug </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
+
                 <div class="grid-item">
                     <img class="img-s" src={cup4}  alt="cup1=4" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center' }}>Graphics cup</b>
+                        <b class="text-adj"> Plain small cup </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
+
                 <div class="grid-item">
                     <img class="img-s" src={cup5}  alt="cup5" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center' }}>Graphics cup</b>
+                        <b class="text-adj"> Cat lady cup </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
+
                 <div class="grid-item">
                     <img class="img-s" src={cup6}  alt="cup6" />
                     <div style={{ display: 'block' }}>
-                        <b style={{ verticalAlign: 'top', display: 'inline-block', textAlign: 'center' }}>Graphics cup</b>
+                        <b class="text-adj"> Small tea cup </b>
                     </div>
+                        <button onClick={updateCart}> Add to chart </button>
                 </div>
             </div>
         </Container>
