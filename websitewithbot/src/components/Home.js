@@ -30,6 +30,14 @@ function Home() {
         }
     });
 
+    let addToItems = (event) =>{
+        /* Adds the item they selected to the cart. selection obtains which item they
+            picked and convt makes it so it can be posted into the api. */
+        let selection = event.target.value;
+        let convt = {name: selection};
+        api.addItem(convt).catch(e => console.log(e));
+    }
+
     return (
         /* Once database is set up use a useEffect to get items in there
             and then use map so you can generate all the items in the database
@@ -46,7 +54,7 @@ function Home() {
                     <div style={{ display: 'block' }}>
                         <b class="text-adj"> Movie cup </b>
                     </div>
-                        <button onClick={updateCart}> Add to chart </button>
+                        <button value="cup1" onClick={addToItems}> Add to chart </button>
                 </div>
 
                 <div class="grid-item">
@@ -88,7 +96,7 @@ function Home() {
                     </div>
                         <button onClick={updateCart}> Add to chart </button>
                 </div>
-            // delete this, only used to check items.
+
             {items.map(x => <div>{x.name}</div>)}
             </div>
         </Container>
