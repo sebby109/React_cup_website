@@ -5,6 +5,8 @@ import Home from './components/Home';
 import NavagationBar from './components/NavagationBar';
 import Cart from './components/Cart';
 
+// used a relational database for this website. PostgreSQL
+
 function App() {
 
   return (
