@@ -39,7 +39,7 @@ function Home() {
             and get it through the api maybe? and also the names of the cups? use map to create them.
         */
 
-        <Container>
+        <Container fluid>
             <div class="grid-container">
                 <div class="grid-item">
                     <img class="img-s" src={cup1} alt="cup1" />
@@ -88,6 +88,8 @@ function Home() {
                     </div>
                         <button onClick={updateCart}> Add to chart </button>
                 </div>
+            // delete this, only used to check items.
+            {items.map(x => <div>{x.name}</div>)}
             </div>
         </Container>
     );
