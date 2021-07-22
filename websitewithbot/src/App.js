@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import NavagationBar from './components/NavagationBar';
 import Cart from './components/Cart';
+import React from 'react';
 
 // used a relational database for this website. PostgreSQL
 

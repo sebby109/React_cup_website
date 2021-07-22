@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import React from 'react';
 
 //left off trying to figure out how i wanted the background. 
 
