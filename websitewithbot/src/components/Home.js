@@ -30,6 +30,7 @@ function Home() {
                 .then(x => setItems(x))
                 .catch(e => console.log(e));
         }
+        return () => {console.log('useEffect Closed')};
     });
 
     let addToItems = (event) => {
@@ -41,7 +42,7 @@ function Home() {
     }
 
     let updateCount = () => {
-        if (counter == allCups.length) {
+        if (counter === allCups.length) {
             counter = 0;
         }
         else {
@@ -61,10 +62,10 @@ function Home() {
         <Container fluid>
             <div class="grid-container">
 
-                {items.map(x =>
+                {items.map(cur_cup =>
                     <div>
                         {
-                            <ItemCard image={allCups[counter]} onLoad={updateCount()} />
+                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} quantonLoad={cur_cup.quantity} onLoad={updateCount()} />
                         }
                     </div>
                 )}

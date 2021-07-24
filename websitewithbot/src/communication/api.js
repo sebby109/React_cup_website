@@ -6,19 +6,22 @@ let getItems = () => {
     // .json() converts the json we received from our server back to javascript.
 }
 
-let addItem = (item) => {
-    return fetch(apiHost + '/item' , {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(item)
-    });
+let getCart = () => {
+    return fetch(apiHost + '/cart')
+    .then(response => response.json())
+    .catch(e => alert(e));
+}
+
+let addToCart = (i) => {
+    return fetch(apiHost + '/addCart/' + i)
+    .then(response => response.json())
+    .catch(e => alert(e));
 }
 
 let api = {
     getItems: getItems,
-    addItem: addItem
+    getCart: getCart,
+    addToCart: addToCart
 };
 
 

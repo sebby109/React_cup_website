@@ -1,17 +1,17 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import cup1 from './cup1.jpg';
 
 function ItemCard (props) {
     let img = props.image;
     return (
         <Container>
             <div class="grid-item">
-                <img class="img-s" src={img} alt="cup1" />
+                <img class="img-s" src={img} alt="cup image" />
                 <div style={{ display: 'block' }}>
-                    <b class="text-adj"> Movie cup </b>
+                    <b class="text-adj"> {props.name} </b>
+                    <p style={{textAlign:'center', display:'block'}}>Price: ${props.price}</p>
                 </div>
-                <button value="cup1" > Add to chart </button>
+                <button > Add to cart </button>
             </div>
         </Container>
     );

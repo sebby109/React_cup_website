@@ -5,10 +5,23 @@ import {
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import React from 'react';
+import '../App.css';
+import { useState, useEffect } from 'react';
+import api from '../communication/api';
 
-//left off trying to figure out how i wanted the background. 
 
-function NavagationBar(props) {
+function NavagationBar() {
+    const [cartItems, setCartItems] = useState('0');
+
+    useEffect(() => {
+        if(cartItems){
+            api.getCart()
+            .then(x => setCartItems(x))
+            .catch(e => alert(e));
+        }
+        return () => {console.log("Return from resource change.")}
+    });
+
     return (
         <Navbar expand="lg" bg="dark" variant="dark" style={{ borderRadius: '20px', margin: '20px', boxShadow: '5px 5px grey' }}>
             <Navbar.Brand href="/">Home of the cups</Navbar.Brand>
@@ -16,16 +29,15 @@ function NavagationBar(props) {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <Nav.Link><Link to="/">Home</Link></Nav.Link>
-                    <Nav.Link><Link to="#">login</Link></Nav.Link>
                 </Nav>
                 <Nav>
                     <Nav.Link href="#">
                         <img src="https://image.flaticon.com/icons/png/512/263/263142.png" height='30px' />
+                        {cartItems === '0' ? '' : cartItems}
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
-
     );
 }
 export default NavagationBar;
