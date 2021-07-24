@@ -6,6 +6,7 @@ import cup3 from './cup3.jpg';
 import cup4 from './cup4.jpg';
 import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
+import ItemCard from './ItemCard';
 import '../App.css';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -15,27 +16,37 @@ import { useState } from 'react';
 function Home() {
     const history = useHistory();
     const [items, setItems] = useState([]);
-    
+    let allCups = [cup1, cup2, cup3, cup4, cup5, cup6];
+    let counter = 0;
+
     let updateCart = () => {
         history.push('/cart');
     }
 
-    useEffect (() => {
+    useEffect(() => {
         // need the if statement or line will infinite b/c useEffect is running after each return.
-        if(items.length === 0){
-            let c = [];
+        if (items.length === 0) {
             api.getItems()
-            .then(x => setItems(x))
-            .catch(e => console.log(e));
+                .then(x => setItems(x))
+                .catch(e => console.log(e));
         }
     });
 
-    let addToItems = (event) =>{
+    let addToItems = (event) => {
         /* Adds the item they selected to the cart. selection obtains which item they
             picked and convt makes it so it can be posted into the api. */
         let selection = event.target.value;
-        let convt = {name: selection};
-        api.addItem(convt).catch(e => console.log(e));
+        let convrt = { name: selection };
+        api.addItem(convrt).catch(e => console.log(e));
+    }
+
+    let updateCount = () => {
+        if (counter == allCups.length) {
+            counter = 0;
+        }
+        else {
+            counter += 1;
+        }
     }
 
     return (
@@ -49,55 +60,14 @@ function Home() {
 
         <Container fluid>
             <div class="grid-container">
-                <div class="grid-item">
-                    <img class="img-s" src={cup1} alt="cup1" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> Movie cup </b>
-                    </div>
-                        <button value="cup1" onClick={addToItems}> Add to chart </button>
-                </div>
 
-                <div class="grid-item">
-                    <img class="img-s" src={cup2} alt="cup2" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> Large cup </b>
+                {items.map(x =>
+                    <div>
+                        {
+                            <ItemCard image={allCups[counter]} onLoad={updateCount()} />
+                        }
                     </div>
-                        <button onClick={updateCart}> Add to chart </button>
-                </div>
-
-                <div class="grid-item">
-                    <img class="img-s" src={cup3}  alt="cup3" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> coffee mug </b>
-                    </div>
-                        <button onClick={updateCart}> Add to chart </button>
-                </div>
-
-                <div class="grid-item">
-                    <img class="img-s" src={cup4}  alt="cup1=4" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> Plain small cup </b>
-                    </div>
-                        <button onClick={updateCart}> Add to chart </button>
-                </div>
-
-                <div class="grid-item">
-                    <img class="img-s" src={cup5}  alt="cup5" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> Cat lady cup </b>
-                    </div>
-                        <button onClick={updateCart}> Add to chart </button>
-                </div>
-
-                <div class="grid-item">
-                    <img class="img-s" src={cup6}  alt="cup6" />
-                    <div style={{ display: 'block' }}>
-                        <b class="text-adj"> Small tea cup </b>
-                    </div>
-                        <button onClick={updateCart}> Add to chart </button>
-                </div>
-
-            {items.map(x => <div>{x.name}</div>)}
+                )}
             </div>
         </Container>
     );
