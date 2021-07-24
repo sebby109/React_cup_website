@@ -33,8 +33,8 @@ function NavagationBar() {
                 <Nav>
                     <Nav.Link href="#">
                         <img src="https://image.flaticon.com/icons/png/512/263/263142.png" height='30px' />
-                        {cartItems === '0' ? '' : cartItems}
                     </Nav.Link>
+                        <small style={{color:"white"}}> {cartItems} </small>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
