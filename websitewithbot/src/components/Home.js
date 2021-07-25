@@ -9,19 +9,13 @@ import cup6 from './cup6.jpg';
 import ItemCard from './ItemCard';
 import '../App.css';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import api from '../communication/api';
 import { useState } from 'react';
 
 function Home() {
-    const history = useHistory();
     const [items, setItems] = useState([]);
     let allCups = [cup1, cup2, cup3, cup4, cup5, cup6];
     let counter = 0;
-
-    let updateCart = () => {
-        history.push('/cart');
-    }
 
     useEffect(() => {
         // need the if statement or line will infinite b/c useEffect is running after each return.

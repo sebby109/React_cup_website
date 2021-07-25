@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
 function ItemCard(props) {
-    const history = useHistory();
     let img = props.image;
     let inventory = props.quantity;
     const [cartNumber, setCartNumber] = useState(0);
@@ -13,8 +12,10 @@ function ItemCard(props) {
     let addToCart = () => {
 
         let cartItem = {count: '1'};
-        api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => console.log(e));
-        setCartNumber(cartNumber + 1);
+        api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
+        api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
+        // LEFT OFF HERE. TRYING TO FIGURE OUT HOW TO GET CART NUMBER TO STAY IF I GO TO CART PAGE THEN BACK W/0 PURCHASING
+ 
     }
 
     return (
