@@ -48,6 +48,7 @@ function Home() {
         else {
             counter += 1;
         }
+        console.log(counter);
     }
 
     return (
@@ -65,7 +66,7 @@ function Home() {
                 {items.map(cur_cup =>
                     <div>
                         {
-                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} quantonLoad={cur_cup.quantity} onLoad={updateCount()} />
+                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} quantity={cur_cup.quantity} onLoad={updateCount()} />
                         }
                     </div>
                 )}

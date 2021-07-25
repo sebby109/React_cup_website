@@ -9,13 +9,17 @@ let getItems = () => {
 let getCart = () => {
     return fetch(apiHost + '/cart')
     .then(response => response.json())
-    .catch(e => alert(e));
+    .catch(e => alert('get cart error'));
 }
 
 let addToCart = (i) => {
-    return fetch(apiHost + '/addCart/' + i)
-    .then(response => response.json())
-    .catch(e => alert(e));
+    return fetch(apiHost + '/addCart', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(i)
+    });
 }
 
 let api = {

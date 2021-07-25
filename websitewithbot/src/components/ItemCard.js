@@ -1,18 +1,37 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import api from '../communication/api';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
-function ItemCard (props) {
+function ItemCard(props) {
+    const history = useHistory();
     let img = props.image;
+    let inventory = props.quantity;
+    const [cartNumber, setCartNumber] = useState(0);
+
+    let addToCart = () => {
+
+        let cartItem = {count: '1'};
+        api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => console.log(e));
+        setCartNumber(cartNumber + 1);
+    }
+
     return (
         <Container>
             <div class="grid-item">
                 <img class="img-s" src={img} alt="cup image" />
                 <div style={{ display: 'block' }}>
                     <b class="text-adj"> {props.name} </b>
-                    <p style={{textAlign:'center', display:'block'}}>Price: ${props.price}</p>
+                    <p style={{ textAlign: 'center', display: 'block' }}>Price: ${props.price}</p>
                 </div>
-                <button > Add to cart </button>
+
+                {inventory === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
+                    :
+                <button onClick={addToCart}> Add to cart </button>
+                }
             </div>
+                <div style={{position:"absolute", top:"25px", right:"45px", color:"white"}}> {cartNumber === 0 ? '' : cartNumber} </div>
         </Container>
     );
 }
