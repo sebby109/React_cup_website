@@ -8,14 +8,15 @@ import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
 import ItemCard from './ItemCard';
 import '../App.css';
-import React, { useEffect } from 'react';
 import api from '../communication/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Home() {
     const [items, setItems] = useState([]);
     let allCups = [cup1, cup2, cup3, cup4, cup5, cup6];
     let counter = 0;
+    const [cartNumber, setCartNumber] = useState(0);
+
 
     useEffect(() => {
         // need the if statement or line will infinite b/c useEffect is running after each return.
@@ -27,14 +28,6 @@ function Home() {
         return () => {console.log('useEffect Closed')};
     });
 
-    let addToItems = (event) => {
-        /* Adds the item they selected to the cart. selection obtains which item they
-            picked and convt makes it so it can be posted into the api. */
-        let selection = event.target.value;
-        let convrt = { name: selection };
-        api.addItem(convrt).catch(e => console.log(e));
-    }
-
     let updateCount = () => {
         if (counter === allCups.length) {
             counter = 0;
@@ -42,7 +35,16 @@ function Home() {
         else {
             counter += 1;
         }
-        console.log(counter);
+    }
+
+    let getCartNumber = () => {
+        api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
+    }
+
+    let addToCart = () => {
+        let cartItem = {count: '1'};
+        api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
+        getCartNumber();
     }
 
     return (
@@ -54,16 +56,26 @@ function Home() {
             and get it through the api maybe? and also the names of the cups? use map to create them.
         */
 
-        <Container fluid>
+        <Container fluid onLoad={getCartNumber}>
             <div class="grid-container">
 
                 {items.map(cur_cup =>
                     <div>
-                        {
-                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} quantity={cur_cup.quantity} onLoad={updateCount()} />
+                        {<div class="grid-item">
+
+                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
+
+                            {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
+                                :
+                            <button onClick={addToCart}> Add to cart </button>
+                            }
+
+                        </div>
                         }
                     </div>
                 )}
+
+                <div style={{position:"absolute", top:"25px", right:"45px", color:"white"}}> {cartNumber === 0 ? '' : cartNumber} </div>
             </div>
         </Container>
     );

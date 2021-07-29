@@ -8,7 +8,7 @@ import React from 'react';
 import '../App.css';
 import api from '../communication/api';
 import { useHistory } from 'react-router-dom';
-
+import { useState } from 'react';
 
 function NavagationBar() {
     const history = useHistory();
@@ -18,7 +18,7 @@ function NavagationBar() {
     }
 
     return (
-        <Navbar expand="lg" bg="dark" variant="dark" style={{ borderRadius: '20px', margin: '20px', boxShadow: '5px 5px grey' }}>
+        <Navbar expand="lg" bg="dark" variant="dark" style={{ borderRadius: '20px', margin: '20px', boxShadow: '5px 5px grey' }} >
             <Navbar.Brand href="/">Home of the cups</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
