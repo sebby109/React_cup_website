@@ -74,8 +74,7 @@ function Home() {
                         }
                     </div>
                 )}
-
-                <div style={{position:"absolute", top:"25px", right:"45px", color:"white"}}> {cartNumber === 0 ? '' : cartNumber} </div>
+                <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
             </div>
         </Container>
     );
