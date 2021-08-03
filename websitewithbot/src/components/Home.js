@@ -48,7 +48,7 @@ function Home() {
         getCartNumber();
 
         // updates the button that was clicked so it shows an animation saying it was addded to cart.
-        reactDom.render(<FadeIn>Item added to chart!</FadeIn>, document.getElementById(event.target.value));
+        reactDom.render(<FadeIn>Item added to cart!</FadeIn>, document.getElementById(event.target.value));
     }
 
 
