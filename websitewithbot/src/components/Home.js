@@ -47,8 +47,12 @@ function Home() {
         api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
         getCartNumber();
 
-        // updates the button that was clicked so it shows an animation saying it was addded to cart.
-        reactDom.render(<FadeIn>Item added to cart!</FadeIn>, document.getElementById(event.target.value));
+        // updates the button that was clicked so it shows an animation switching to a check mark.
+        reactDom.render(
+            <FadeIn>
+                <img class="check-mark" src="https://i.pinimg.com/originals/99/7c/00/997c005907ebc8f6d209ccf297eac40a.png" alt="check mark"></img>
+            </FadeIn>,
+            document.getElementById(event.target.value));
     }
 
 
