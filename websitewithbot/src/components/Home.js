@@ -10,13 +10,14 @@ import ItemCard from './ItemCard';
 import '../App.css';
 import api from '../communication/api';
 import { useState, useEffect } from 'react';
+import FadeIn from 'react-fade-in/lib/FadeIn';
+import reactDom from 'react-dom';
 
 function Home() {
     const [items, setItems] = useState([]);
     let allCups = [cup1, cup2, cup3, cup4, cup5, cup6];
     let counter = 0;
     const [cartNumber, setCartNumber] = useState(0);
-
 
     useEffect(() => {
         // need the if statement or line will infinite b/c useEffect is running after each return.
@@ -41,11 +42,15 @@ function Home() {
         api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
     }
 
-    let addToCart = () => {
+    let addToCart = (event) => {
         let cartItem = {count: '1'};
         api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
         getCartNumber();
+
+        // updates the button that was clicked so it shows an animation saying it was addded to cart.
+        reactDom.render(<FadeIn>Item added to chart!</FadeIn>, document.getElementById(event.target.value));
     }
+
 
     return (
         /* Once database is set up use a useEffect to get items in there
@@ -67,7 +72,7 @@ function Home() {
 
                             {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
                                 :
-                            <button onClick={addToCart}> Add to cart </button>
+                            <div id={counter}> <button value={counter} onClick={addToCart}> Add to cart </button> </div>
                             }
 
                         </div>
