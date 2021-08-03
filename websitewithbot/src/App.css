@@ -38,3 +38,8 @@ position: absolute;
 text-align: center;
 color: white;
 }
+
+.check-mark {
+  height: 55px;
+  width: 55px;
+}
