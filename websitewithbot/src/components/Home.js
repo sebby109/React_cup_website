@@ -44,6 +44,7 @@ function Home() {
 
     let addToCart = (event) => {
         let cartItem = {count: '1'};
+        let div_id = event.target.value;
         api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
         getCartNumber();
 
@@ -52,7 +53,7 @@ function Home() {
             <FadeIn>
                 <img class="check-mark" src="https://i.pinimg.com/originals/99/7c/00/997c005907ebc8f6d209ccf297eac40a.png" alt="check mark"></img>
             </FadeIn>,
-            document.getElementById(event.target.value));
+            document.getElementById(div_id));
     }
 
 

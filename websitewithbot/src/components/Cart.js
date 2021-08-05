@@ -10,7 +10,6 @@ import cup4 from './cup4.jpg';
 import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
 
-
 function Cart() {
     const [cartNumber, setCartNumber] = useState(0);
 
