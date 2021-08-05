@@ -9,7 +9,7 @@ import cup3 from './cup3.jpg';
 import cup4 from './cup4.jpg';
 import cup5 from './cup5.jpg';
 import cup6 from './cup6.jpg';
-import FadeInLeft from 'react-animations';
+
 
 function Cart() {
     const [cartNumber, setCartNumber] = useState(0);
@@ -25,7 +25,7 @@ function Cart() {
     return (
         <Container fluid>
             <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
-            <FadeInLeft>Testing</FadeInLeft>
+            in cart.
         </Container>
     );
 }

@@ -6,16 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import React from 'react';
 import '../App.css';
-import api from '../communication/api';
-import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
 
 function NavagationBar() {
-    const history = useHistory();
-
-    let goToCart = () => {
-        history.push('/cart');
-    }
 
     return (
         <Navbar expand="lg" bg="dark" variant="dark" style={{ borderRadius: '20px', margin: '20px', boxShadow: '5px 5px grey' }} >
@@ -27,7 +19,9 @@ function NavagationBar() {
                 </Nav>
                 <Nav>
                     <Nav.Link href="#">
-                        <img src="https://image.flaticon.com/icons/png/512/263/263142.png" height='30px' onClick={goToCart}/>
+                        <Link to="/cart">
+                            <img src="https://image.flaticon.com/icons/png/512/263/263142.png" height='30px' />
+                        </Link>
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
