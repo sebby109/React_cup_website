@@ -71,7 +71,6 @@ function Home() {
                 {items.map(cur_cup =>
                     <div>
                         {<div class="grid-item">
-
                             <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
 
                             {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
