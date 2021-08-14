@@ -22,10 +22,28 @@ let addToCart = (i) => {
     });
 }
 
+let getTempCart = () => {
+    return fetch(apiHost + '/getTemp')
+    .then(response => response.json())
+    .catch(e => console.log(e));
+}
+
+let addCartItems = (items) => {
+    return fetch(apiHost + '/addTemp', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(items)
+    });
+}
+
 let api = {
     getItems: getItems,
     getCart: getCart,
-    addToCart: addToCart
+    getTempCart: getTempCart,
+    addToCart: addToCart,
+    addCartItems: addCartItems
 };
 
 

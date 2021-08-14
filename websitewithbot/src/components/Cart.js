@@ -12,9 +12,16 @@ import cup6 from './cup6.jpg';
 
 function Cart() {
     const [cartNumber, setCartNumber] = useState(0);
+    const [temp_cart, setTempCart] = useState([]);
 
     useEffect(() =>{
         api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
+        return () => {console.log("effect closed in cart.")}
+    });
+
+    useEffect(() =>{
+        // used to get the ids of all the items chosen from the user. LET OFF HERE
+        api.getTempCart().then(result => setTempCart(result)).catch(e => alert(e));
         return () => {console.log("effect closed in cart.")}
     });
 
@@ -24,7 +31,6 @@ function Cart() {
     return (
         <Container fluid>
             <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
-            in cart.
         </Container>
     );
 }

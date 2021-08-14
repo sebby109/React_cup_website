@@ -38,15 +38,14 @@ function Home() {
         }
     }
 
-    let getCartNumber = () => {
-        api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
-    }
-
     let addToCart = (event) => {
-        let cartItem = {count: '1'};
         let div_id = event.target.value;
-        api.addToCart(cartItem).then(() =>console.log('Item added')).catch(e => alert(e));
-        getCartNumber();
+        let addNumCart = {count: '1'};
+        let tempItem = {id: div_id};
+        api.addToCart(addNumCart).then(() =>console.log('Item added')).catch(e => alert(e));
+        api.addCartItems(tempItem).then(() =>console.log('added temp item')).catch(e => console.log(e));
+        setCartNumber(cartNumber + 1);
+
 
         // updates the button that was clicked so it shows an animation switching to a check mark.
         reactDom.render(
@@ -56,6 +55,9 @@ function Home() {
             document.getElementById(div_id));
     }
 
+    let getCartNumber = () => {
+        api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
+    }
 
     return (
         /* Once database is set up use a useEffect to get items in there
@@ -72,8 +74,7 @@ function Home() {
                 {items.map(cur_cup =>
                     <div>
                         {<div class="grid-item">
-                            <ItemCard image={allCups[counter]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
-
+                            <ItemCard image={allCups[cur_cup.itemid - 1]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
                             {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
                                 :
                             <div id={counter}> <button value={counter} onClick={addToCart}> Add to cart </button> </div>
