@@ -38,12 +38,19 @@ let addCartItems = (items) => {
     });
 }
 
+let getItemsFromDb = (selected) => {
+    return fetch(apiHost + '/selection/' + selected)
+    .then(response => response.json())
+    .catch(e => console.log(e));
+}
+
 let api = {
     getItems: getItems,
     getCart: getCart,
     getTempCart: getTempCart,
     addToCart: addToCart,
-    addCartItems: addCartItems
+    addCartItems: addCartItems,
+    getItemsFromDb: getItemsFromDb
 };
 
 
