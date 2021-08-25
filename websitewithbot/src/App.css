@@ -43,3 +43,19 @@ color: white;
   height: 55px;
   width: 55px;
 }
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  margin: 0 auto;
+}
+
+#content div{
+  padding:20px;
+  margin-left: 200px;
+}
+
+.cart-img {
+  border-radius: 20%;
+  height: 150px;
+}

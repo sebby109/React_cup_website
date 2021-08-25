@@ -18,7 +18,7 @@ function NavagationBar() {
                     <Nav.Link><Link to="/">Home</Link></Nav.Link>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="#">
+                    <Nav.Link>
                         <Link to="/cart">
                             <img src="https://image.flaticon.com/icons/png/512/263/263142.png" height='30px' />
                         </Link>

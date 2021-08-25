@@ -7,7 +7,7 @@ function ItemCard(props) {
     return (
         <Container>
             <div>
-                <img class="img-s" src={img} alt="cup" />
+                <img class="img-s" src={img} alt="different cups" />
                 <div style={{ display: 'block' }}>
                     <b class="text-adj"> {props.name} </b>
                     <p style={{ textAlign: 'center', display: 'block' }}>Price: ${props.price}</p>

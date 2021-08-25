@@ -41,6 +41,9 @@ function Home() {
     let addToCart = (event) => {
         let div_id = event.target.value;
         let addNumCart = {count: '1'};
+
+        // the div id is the same as the id of the item in the db so i used it to know
+        // which item is going to be selected in the db.
         let tempItem = {id: div_id};
         api.addToCart(addNumCart).then(() =>console.log('Item added')).catch(e => alert(e));
         api.addCartItems(tempItem).then(() =>console.log('added temp item')).catch(e => console.log(e));
@@ -55,9 +58,9 @@ function Home() {
             document.getElementById(div_id));
     }
 
-    let getCartNumber = () => {
+    useEffect( () => {
         api.getCart().then(result => setCartNumber(result)).catch(e => alert(e));
-    }
+    }, []);
 
     return (
         /* Once database is set up use a useEffect to get items in there
@@ -68,24 +71,25 @@ function Home() {
             and get it through the api maybe? and also the names of the cups? use map to create them.
         */
 
-        <Container fluid onLoad={getCartNumber}>
-            <div class="grid-container">
+        <Container fluid>
+            {items === [] ? '' :
+                <div class="grid-container">
+                    {items.map(cur_cup =>
+                        <div>
+                            {<div class="grid-item">
+                                <ItemCard image={allCups[cur_cup.itemid - 1]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
+                                {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
+                                    :
+                                <div id={counter}> <button value={counter} onClick={addToCart}> Add to cart </button> </div>
+                                }
 
-                {items.map(cur_cup =>
-                    <div>
-                        {<div class="grid-item">
-                            <ItemCard image={allCups[cur_cup.itemid - 1]} name={cur_cup.itemname} price={cur_cup.price} onLoad={updateCount()} />
-                            {cur_cup.quantity === 0 ? <small style={{ color: 'red' }}> Out of stock </small>
-                                :
-                            <div id={counter}> <button value={counter} onClick={addToCart}> Add to cart </button> </div>
+                            </div>
                             }
-
                         </div>
-                        }
-                    </div>
-                )}
-                <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
-            </div>
+                    )}
+                    <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
+                </div>
+            }
         </Container>
     );
 }
