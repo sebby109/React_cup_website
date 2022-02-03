@@ -38,8 +38,8 @@ let addCartItems = (items) => {
     });
 }
 
-let getItemsFromDb = (selected) => {
-    return fetch(apiHost + '/selection/' + selected)
+let getItem = (i) => {
+    return fetch(apiHost + '/findItem' + i)
     .then(response => response.json())
     .catch(e => console.log(e));
 }
@@ -50,7 +50,7 @@ let api = {
     getTempCart: getTempCart,
     addToCart: addToCart,
     addCartItems: addCartItems,
-    getItemsFromDb: getItemsFromDb
+    getItem: getItem
 };
 
 

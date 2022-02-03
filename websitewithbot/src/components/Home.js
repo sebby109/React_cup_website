@@ -20,7 +20,6 @@ function Home() {
     const [cartNumber, setCartNumber] = useState(0);
 
     useEffect(() => {
-        // need the if statement or line will infinite b/c useEffect is running after each return.
         if (items.length === 0) {
             api.getItems()
                 .then(x => setItems(x))

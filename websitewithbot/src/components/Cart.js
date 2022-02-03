@@ -13,6 +13,7 @@ import cup6 from './cup6.jpg';
 function Cart() {
     const [cartNumber, setCartNumber] = useState(0);
     const [temp_cart, setTempCart] = useState([]);
+    const [dbItemsPicked, setDbItemsPicked] = useState([]);
     let allCups = [cup1, cup2, cup3, cup4, cup5, cup6];
 
     useEffect(() =>{
@@ -29,8 +30,8 @@ function Cart() {
 
     });
 
-    // LEFT OFF HERE 8/22 WORKING ON DISPLAYING THE CART AND ITS PICTURE. MAYBE DO A DIV AND AN OL INSIDE? ALSO HAVE GET CART ERROR
-    // WHEN SWITCHING TO HOME FROM THE CART PAGE.
+    // LEFT OFF HERE TRYING TO FIGURE OUT HOW IM GOING TO GET DBITEMSPICKED FILLED AND DISPLAYED ON SCREEN.
+
     return (
         <Container fluid>
             <div> {cartNumber === 0 ? '' : <div class="dot">{cartNumber}</div>} </div>
@@ -48,6 +49,7 @@ function Cart() {
                     }
                 </div>
             }
+            {dbItemsPicked.length}
         </Container>
     );
 }
