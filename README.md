@@ -1,4 +1,4 @@
-# WebsiteWithBot
+# full stack website
 A simple website for practice with a bot that will order items.
 This is my first full stack website outside of school assignments. 
 It uses REACT library, node.js, express framework to connect to a REST API on heroku
